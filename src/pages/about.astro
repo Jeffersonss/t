@@ -1,15 +1,25 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+const pageTitle = "About me";
+const identidade = {
+	primeiroNome: "Jefferson",
+	pais: "Brasil",
+	ocupacao: "Auxiliar Adm",
+	hobbies: ["xbox", "futebol", "treino"],
+};
+const habilidades = ["html", "css", "design"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title={pageTitle}>
 	<a href="/">Home</a>
 	<a href="/about/">About</a>
 	<a href="/blog">blog</a>
-	<h1>My Astro Site</h1>
-	<h2>About Me <br>
-	... and my new Astro site!</h2>
+	<h1>{pageTitle}</h1>
+	<h2>... and my new Astro site!</h2>
 
 	<p>
 		I am working through Astro's introductory tutorial. This is the second
@@ -20,6 +30,22 @@ import Card from "../components/Card.astro";
 		This site will update as I complete more of the tutorial, so keep
 		checking back and see how my journey is going!
 	</p>
+
+	<p>Alguns fatos sobre mim</p>
+	<ul>
+		<li>Meu nome é {identidade.primeiroNome} e eu sou {identidade.ocupacao}</li>
+		{identidade.hobbies.length >=2 &&
+		<li> Meus dois Hobbies são: {identidade.hobbies[0]} e {identidade.hobbies[1]}</li>}
+	</ul>
+
+	<p>Minhas habilidades são: </p>
+	<ul>
+		{habilidades.map((habilidade)=> <li>{habilidade}</li>)}
+	</ul>
+
+	{happy && <p>Eu estou feliz com astro</p>}
+	{finished && <p> Eu terminei o tutorial</p>}
+	{goal === 3 ? <p>Meu objetivo é finalizar em 3 dias</p> : <p>Meu objetivo não é finalizar</p> }
 </Layout>
 
 <style>
